@@ -3,7 +3,7 @@ import img from '../assets/fast.jpg'
 
 const Movie = ( { title , image , year , type}) => {
     return (
-        <div className="wrapper">
+        
             <div className="card">  
                     <img src={image} alt="" />
                     <div className="Descirption">
@@ -18,7 +18,7 @@ const Movie = ( { title , image , year , type}) => {
                         </button>
                     </div>
                 </div>
-             </div>
+             
 
 
     );

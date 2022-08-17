@@ -12,22 +12,41 @@ import axios from 'axios';
 
 
 const MoviePage = () => {
+    const { query } = useParams();
+    console.log(query)
 
-    const [movie, setMovie] = useState([]);
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [searchId, setSearchId] = useState('');
+    const [searchString, setSearchString] = useState(query || "")
     
-    // const { id } = useParams();
-    // console.log(id)
 
+
+   function searchMovie() {
+
+         Movie(searchString)
+
+   }
+    
+    
+    
     useEffect(() => {
-
-         async function Movie() {
-
-            const { data } = await axios.get('https://www.omdbapi.com/?apikey=59e995b1&s=game')
-            setMovie(data.Search)
-        }
+        
+                 async function Movie() {
+        
+                    const { data } = await axios.get(`https://www.omdbapi.com/?apikey=59e995b1&s=${searchString || query}`)
+                 
+                    setMovies(data.Search)
+                    setLoading(false)
+        
+                }
         Movie()
-        console.log(movie)
+        
     }, []);
+
+    
+    
+    
 
 
     return (
@@ -58,10 +77,10 @@ const MoviePage = () => {
                                 <h1>Browse our Movies</h1>
 
                                 <div className="input__field-holder">
-                                    <input className='input__movie' placeholder='type in a Movie'  type="text" />
+                                    <input className='input__movie'  value={searchString} onChange={(e) => setSearchString(e.target.value)}  placeholder='type in a Movie'  type="text" />
                                 
 
-                                    <Button className='btnpurp' >
+                                    <Button className='btnpurp' onClick={searchMovie}>
 
                                             <SearchIcon  className='search' />
                                     </Button>
@@ -77,22 +96,13 @@ const MoviePage = () => {
                     </div>
 
                             <div className="wrapper">
-                                {movie.slice(0,6).map(movies=> 
+                                {movies.slice(0,6).map(movie=> 
+
+                                    
+
+                                    <Movie  key={movie.imdbID} image={movie.Poster} title={movie.Title}  year={movie.Year} type={movie.Type} />
                                 
-                                    <div className="card" key={movies.imdbID}>  
-                                            <img src={movies.Poster} alt="" />
-                                            <div className="Descirption">
-                                                <h1>{movies.Title}</h1>
-                                                <h2>{movies.Year}</h2>
-                                                <h3>{movies.Type}</h3>
-                                                <p>
-                                                    If you have a problem and there is nowhere else to turn, the mysterious and elusive Robert McCall will deliver the vigilante justice you seek. This time, however, McCall's past cuts especially close to home when thugs kill Susan Plummer -- his best friend and former colleague. Now out for revenge, McCall must take on a crew of highly trained assassins who'll stop at nothing to destroy him.                </p>
-                                                <button>
-                                                    <i className="fab fa-youtube"></i>
-                                                    Play trailer on YouTube
-                                                </button>
-                                            </div>
-                                        </div>
+                             
                                 
                                 )}
                             

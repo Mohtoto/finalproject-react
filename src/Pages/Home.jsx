@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import img from '../assets/proj.png'
 import SearchIcon from '@mui/icons-material/Search';
 import homeimg from '../assets/home.svg'
@@ -9,9 +9,15 @@ import homeimg from '../assets/home.svg'
 
 const Home = () => {
 
+
     const [input, setInput] = useState('');
+    const navigate = useNavigate()
 
 
+        const gotoMoviepage = () => {
+
+            navigate(`MoviePage/${input}`)
+        }
 
 
 
@@ -39,9 +45,9 @@ const Home = () => {
 
 
                                 <div className="input__holder">
-                                        <input placeholder='type in a Movie' value={input} onChange={(e) => setInput(e.target.value)} type="text" />
+                                        <input placeholder='type in a Movie' value={input}  onChange={(e) => setInput(e.target.value)} type="text" />
 
-                                        <Button className='btn' >
+                                        <Button className='btn' onClick={gotoMoviepage}>
 
                                             <SearchIcon  className='search' />
                                         </Button>

@@ -14,7 +14,10 @@ function App() {
         
         <Routes>
            <Route path="/" exact element={<Home />} />
-           <Route path="/MoviePage"  element={<MoviePage />} />
+           {/* <Route path="MoviePage"  element={<MoviePage />} /> */}
+           <Route path="MoviePage" element={<MoviePage />}>
+            <Route path=":query" element={<MoviePage/>} />
+          </Route>
            
         </Routes>
       </div>
