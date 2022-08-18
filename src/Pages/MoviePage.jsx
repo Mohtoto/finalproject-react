@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import img from '../assets/proj.png'
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
@@ -12,40 +12,54 @@ import axios from 'axios';
 
 
 const MoviePage = () => {
-    const { query } = useParams();
-    console.log(query)
+    // const { query } = useParams();
+    // console.log(query)
+    const { state } = useLocation();
+    
+    // const navigate = useNavigate();
+  
+
 
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchId, setSearchId] = useState('');
-    const [searchString, setSearchString] = useState(query || "")
+    const [searchString, setSearchString] = useState("")
     
 
-
-   function searchMovie() {
-
-         Movie(searchString)
-
+    async function FetchMovies(query) {
+ 
+       const { data } = await axios.get(`https://www.omdbapi.com/?apikey=59e995b1&s=${searchString || query}`)
+    
+       setMovies(data.Search)
+       setLoading(false)
+ 
    }
+
     
+
+
     
-    
-    useEffect(() => {
-        
-                 async function Movie() {
-        
-                    const { data } = await axios.get(`https://www.omdbapi.com/?apikey=59e995b1&s=${searchString || query}`)
-                 
-                    setMovies(data.Search)
-                    setLoading(false)
-        
-                }
-        Movie()
-        
+   
+   
+   useEffect(() => {
+
+        if(state && state.query){
+
+            FetchMovies(state.query)
+        }
     }, []);
 
     
+
     
+
+
+    const searchEnter= (e)=> {
+
+        if(e.key === 'Enter'){
+
+            FetchMovies()
+        }
+    }
     
 
 
@@ -59,7 +73,7 @@ const MoviePage = () => {
 
                                 {/* <img src='https://image.tmdb.org/t/p/original/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg' alt="" />  */}
                             <nav>   
-                                <img src={img} />
+                                <img src={img}  />
 
                                     <ul>
                                         
@@ -77,10 +91,10 @@ const MoviePage = () => {
                                 <h1>Browse our Movies</h1>
 
                                 <div className="input__field-holder">
-                                    <input className='input__movie'  value={searchString} onChange={(e) => setSearchString(e.target.value)}  placeholder='type in a Movie'  type="text" />
+                                    <input className='input__movie'  onKeyUp={searchEnter} value={searchString} onChange={(e) => setSearchString(e.target.value)}  placeholder='type in a Movie'  type="text" />
                                 
 
-                                    <Button className='btnpurp' onClick={searchMovie}>
+                                    <Button className='btnpurp' onClick={() => FetchMovies(searchString)}>
 
                                             <SearchIcon  className='search' />
                                     </Button>
@@ -94,19 +108,31 @@ const MoviePage = () => {
                             
 
                     </div>
+                    <div className="wrapper">
+                    {loading? 
+                        new Array(6).fill(0).map((_, index) => (
 
-                            <div className="wrapper">
-                                {movies.slice(0,6).map(movie=> 
+                        <div className="card">  
+                                <img src="" alt="" />
+                               <div className='card--skeleton'></div>
 
-                                    
+                          
 
-                                    <Movie  key={movie.imdbID} image={movie.Poster} title={movie.Title}  year={movie.Year} type={movie.Type} />
-                                
-                             
-                                
-                                )}
-                            
-                            </div>
+                        </div>
+
+                        ))
+
+                    : 
+
+                        
+                        movies.slice(0,6).map( movie => ( 
+                         <Movie  key={movie.imdbID} image={movie.Poster} title={movie.Title}  year={movie.Year} type={movie.Type} />                
+                         
+                         ))}
+
+                     
+                    </div>
+             
 
                
           
