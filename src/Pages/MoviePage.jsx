@@ -32,7 +32,7 @@ const MoviePage = () => {
        setLoading(false)
  
    }
-
+  
     
 
 
@@ -111,16 +111,18 @@ const MoviePage = () => {
                     : 
 
                         
-                        movies.slice(0,6).map( movie => ( 
-                                <div className="card" >  
+                        movies.slice(0,6).map(movie => ( 
+                                <div className="card" key={movie.imdbID} >  
                                     <div className="Descirption">
-                                     <Link to='/MoviePage/1'>
+                                     <Link to={`/MoviePage/${movie.imdbID}`}>
                                         <img src={movie.Poster} alt="" />
                                      </Link>   
                                         <h1>{movie.Title}</h1>
                                         <h2>{movie.Year}</h2>
                                         <h3>{movie.Type}</h3>
                                     </div>
+
+                                    
                                 </div>     
                          
                          ))}

@@ -12,13 +12,13 @@ function App() {
   return (
     <Router>
 
-      <Nav />
       <div className="app">
+        <Nav />
         
         <Routes>
            <Route path="/" exact element={<Home />} />
            <Route path="/MoviePage" exact element={<MoviePage />} />
-           <Route path="/MoviePage/1" element={<MovieInfo />} />
+           <Route path="/MoviePage/:id" element={<MovieInfo />} />
         
         </Routes>
 

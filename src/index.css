@@ -402,6 +402,8 @@ MovieINFO
 .movie__information{
 
   display: flex;
+ 
+  justify-content: center;
   margin: 40px;
 
 

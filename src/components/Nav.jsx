@@ -20,6 +20,8 @@ const Nav = () => {
             <Link to="/MoviePage" className="link">
               Find your Movie
             </Link>
+            
+            
           </li>
           {/* <li><Link to='/Contactus' className='link movieback '>Contact US</Link></li> */}
         </ul>
