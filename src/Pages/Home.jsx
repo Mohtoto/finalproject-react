@@ -5,6 +5,7 @@ import img from "../assets/proj.png";
 import SearchIcon from "@mui/icons-material/Search";
 import homeimg from "../assets/home.svg";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import Nav from "../components/Nav";
 
 const Home = () => {
   const [input, setInput] = useState("");
@@ -22,27 +23,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <nav>
-        <img src={img} />
-
-        <ul>
-          <li>
-            <Link to="/" className="link">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/MoviePage" className="link">
-              Find your Movie
-            </Link>
-          </li>
-          <li>
-            <Link to="/Contactus" className="link back">
-              Contact US
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      
 
       <header>
         <div className="row">

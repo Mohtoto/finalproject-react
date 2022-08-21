@@ -3,10 +3,9 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import img from '../assets/proj.png'
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
-import Movie from '../components/Movie';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import Nav from '../components/Nav';
 
 
 
@@ -21,12 +20,12 @@ const MoviePage = () => {
 
 
     const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [searchString, setSearchString] = useState("")
     
 
     async function FetchMovies(query) {
- 
+        setLoading(true)
        const { data } = await axios.get(`https://www.omdbapi.com/?apikey=59e995b1&s=${searchString || query}`)
     
        setMovies(data.Search)
@@ -71,20 +70,7 @@ const MoviePage = () => {
                     <div className="cont">
                         <div className="row ">
 
-                                {/* <img src='https://image.tmdb.org/t/p/original/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg' alt="" />  */}
-                            <nav>   
-                                <img src={img}  />
-
-                                    <ul>
-                                        
-                                        
-                                            <li><Link to='/'  className='link'>Home</Link></li>
-                                            <li><Link to='/MoviePage' className='link'>Find your Movie</Link></li>
-                                            <li><Link to='/Contactus' className='link movieback '>Contact US</Link></li>
-                                        
-                                    </ul>
-                                    
-                            </nav>
+                           
 
                             <div className="desc__info">
 
@@ -126,7 +112,16 @@ const MoviePage = () => {
 
                         
                         movies.slice(0,6).map( movie => ( 
-                         <Movie  key={movie.imdbID} image={movie.Poster} title={movie.Title}  year={movie.Year} type={movie.Type} />                
+                                <div className="card" >  
+                                    <div className="Descirption">
+                                     <Link to='/MoviePage/1'>
+                                        <img src={movie.Poster} alt="" />
+                                     </Link>   
+                                        <h1>{movie.Title}</h1>
+                                        <h2>{movie.Year}</h2>
+                                        <h3>{movie.Type}</h3>
+                                    </div>
+                                </div>     
                          
                          ))}
 
