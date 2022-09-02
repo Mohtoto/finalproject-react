@@ -3,7 +3,7 @@ import Home from "./Pages/Home";
 import { BrowserRouter as Router , Routes , Route} from 'react-router-dom'
 import MoviePage from "./Pages/MoviePage";
 import Footer from "./components/Footer";
-import MovieInfo from "./components/MovieInfo";
+import MovieInfo from "./Pages/MovieInfo";
 import Nav from "./components/Nav";
 
 

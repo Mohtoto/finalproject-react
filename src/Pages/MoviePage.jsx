@@ -6,17 +6,16 @@ import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav";
+import MovieInfo from "./MovieInfo";
 
 const MoviePage = () => {
-  // const { query } = useParams();
-  // console.log(query)
   const { state } = useLocation();
-
-  // const navigate = useNavigate();
-
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchString, setSearchString] = useState('');
+  const navigate = useNavigate();
+
+
 
   async function FetchMovies(query) {
     setLoading(true);
@@ -24,22 +23,31 @@ const MoviePage = () => {
       `https://www.omdbapi.com/?apikey=59e995b1&s=${searchString || query}`
     );
 
+    
+    
     setMovies(data.Search);
     setLoading(false);
+
   }
 
+
+
+  
+  
   useEffect(() => {
     if (state && state.query) {
       FetchMovies(state.query);
     }
   }, []);
 
+
   const searchEnter = (e) => {
     if (e.key === "Enter") {
-      FetchMovies();
+      FetchMovies() 
     }
   };
 
+  
   return (
     <div className="MoviePage">
       <div className="cont">
@@ -53,7 +61,7 @@ const MoviePage = () => {
                 onKeyUp={searchEnter}
                 value={searchString}
                 onChange={(e) => setSearchString(e.target.value)}
-                placeholder="type in a Movie"
+                placeholder="Type in a Movie"
                 type="text"
               />
 
@@ -69,7 +77,7 @@ const MoviePage = () => {
       </div>
       <div className="wrapper">
         {loading
-          ? new Array(10).fill(0).map((_, index) => (
+          ? new Array(9).fill(0).map((_, index) => (
               <div className="card">
                 <div className="card--skeleton"></div>
                 <div className="Descirption">
@@ -77,19 +85,24 @@ const MoviePage = () => {
                 </div>
               </div>
             ))
-          : movies.slice(0, 10).map((movie) => (
+          : movies.slice(0, 9).map((movie) => (
               <div className="card" key={movie.imdbID}>
                 <div className="Descirption">
-                  <Link to={`/MoviePage/${movie.imdbID}`}>
-                    <img src={movie.Poster} alt="" />
+                  <Link to={`/MoviePage/${movie.imdbID}`} state={{title: searchString || state.query}}>
+                    <img className="imggg" src={movie.Poster} alt="" />
                   </Link>
-                  <h1>{movie.Title}</h1>
-                  <h2>{movie.Year}</h2>
+                  <h1>{movie.Title}</h1> 
                   <h3>{movie.Type}</h3>
                 </div>
               </div>
             ))}
       </div>
+
+
+
+      {/* {movies.map(movie => <MovieInfo id={movie.imdbID} />   )} */}
+
+      {/* `/MoviePage/${movie.imdbID}` */}
     </div>
   );
 };

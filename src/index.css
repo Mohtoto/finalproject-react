@@ -126,8 +126,22 @@ header{
   font-size: 70px;
   text-align: center;
   color: var(--color);
+  animation: animate-profile-picture 800ms 400ms backwards;
 
 
+}
+
+
+@keyframes animate-profile-picture{
+    0%{
+        transform: scale(0);
+    }
+    80%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
 
 .home__description > h2 {
@@ -136,13 +150,31 @@ header{
   margin: 40px 0 40px 0 ;
   font-size: 30px;
   text-align: center;
+  animation: animate-h2 800ms 400ms backwards;
 
 }
+
+@keyframes animate-h2{
+  0%{
+      transform: scale(0);
+  }
+  80%{
+      transform: scale(1.1);
+  }
+  100%{
+      transform: scale(1);
+  }
+}
+
+
+
 
 .input__holder > button {
 
   margin-left: 20px;
 }
+
+
 
 .input__holder {
 
@@ -153,7 +185,6 @@ header{
   margin: 80px 0 80px 0;
   
  
-
 }
 
 .input__holder > input {
@@ -300,17 +331,19 @@ MOVIE CARD
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  
 
 
 }
 
 .card--skeleton{
 
-  width: 400px;
+  width: 350px;
   background-color: lightgray;
   height: 500px;
   display: flex;
   flex-wrap:wrap;
+  
 
 }
 
@@ -320,9 +353,18 @@ MOVIE CARD
 .card{
   margin: 20px;
   border-radius: 20px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 20px;
+  transition: all 300ms ease;
+  width: 25%;
 
+}
+
+
+.card:hover{
+
+  transform: scale(1.2)
+  
 }
 
 
@@ -334,14 +376,22 @@ MOVIE CARD
   justify-content:center ;
   text-align: center;
 
+
+
  
 
 
 }
 
-.Descirption > img {
+.imggg {
 
   object-fit: contain;
+ 
+  border-radius: 12px;
+  border: 5px solid #000;
+  
+  
+
 
   
 
@@ -353,6 +403,7 @@ MOVIE CARD
 
   font-size: 20px;
   margin-top: 20px;
+  
 
 
 }
@@ -379,6 +430,14 @@ MovieINFO
 
 
 }  
+
+.movie__info-img{
+
+  border: 5px solid #000;
+  width: 50%;
+
+
+}
 
 .top__info > h3 {
   font-size: 24px;
@@ -434,6 +493,12 @@ MovieINFO
 }
 
 
+.wrapper{
+
+  gap: 1rem;
+}
+
+
 .box1 , .box2{
 
   background-color: lightgray;
@@ -485,6 +550,55 @@ MovieINFO
   height:75px;
   margin-top: 50px;
 }
+
+
+/*
+
+
+    recommmend movies 
+
+*/
+
+.recommened__wrapper{
+
+  width: 100%;
+  display: flex;
+  align-items:center ;
+  justify-content: center;
+  gap: 5em;
+
+
+
+
+}
+.reco__h1{
+
+  font-size: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+ 
+}
+
+.reco__movie{
+
+  width: 25%;
+  /* height: 200px; */
+  cursor: pointer;
+
+  
+
+}
+
+ .recoo__img{
+
+  border: 5px solid black;
+  height: 100%;
+ 
+
+
+ }
+
+
 /* 
 
 Footer   

@@ -11,9 +11,13 @@ const Home = () => {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 
+
+
   const gotoMoviepage = () => {
     navigate('MoviePage', {state: { query: input}});
   };
+
+
 
   function onSearchKeyDown(event) {
     if (event.key === "Enter") {
@@ -21,11 +25,12 @@ const Home = () => {
     }
   }
 
+
+
   return (
     <div className="home">
       
-
-      <header>
+     <header>
         <div className="row">
           <div className="main__des">
             <div className="home__description">
@@ -34,7 +39,7 @@ const Home = () => {
 
               <div className="input__holder">
                 <input
-                  placeholder="type in a Movie"
+                  placeholder="Type in a Movie...."
                   onKeyDown={onSearchKeyDown}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
