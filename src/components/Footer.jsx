@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../assets/moh2.png'
+
 
 const Footer = () => {
     return (
@@ -8,7 +10,7 @@ const Footer = () => {
                 <footer>
                     <div className="row">
                          <div class="footer-bottom">
-                                <h1>PROJECTION</h1>
+                         <img  className="personal__logo" src={logo} />
                                 <div class="footer-menu">
                                     <ul class="f-menu">
                                         <li>
