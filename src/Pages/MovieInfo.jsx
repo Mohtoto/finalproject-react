@@ -105,7 +105,7 @@ const MovieInfo = () => {
                 <p>Language : {movie.Language}</p>
 
 
-                <Button variant="contained" className="btn">
+                <Button  onclick={()=> (alert ("This is an alert dialog box"))} variant="contained" className="btn">
 
                   Choose Movie
 

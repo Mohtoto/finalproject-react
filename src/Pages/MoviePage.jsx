@@ -75,12 +75,14 @@ const MoviePage = () => {
           </div>
         </div>
       </div>
+      <h1 className="search___res">Search Results : {searchString}</h1>
       <div className="wrapper">
         {loading
           ? new Array(9).fill(0).map((_, index) => (
               <div className="card">
                 <div className="card--skeleton"></div>
-                <div className="Descirption">
+                <div className="Descirption__ske">
+                  <div className="Descirption--skeleton"></div>
                   <div className="Descirption--skeleton"></div>
                 </div>
               </div>

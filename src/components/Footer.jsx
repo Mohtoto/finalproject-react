@@ -17,12 +17,7 @@ const Footer = () => {
                                         <li>
                                             <Link className="link__white" to='/MoviePage'>Find a Movie</Link>
                                         </li>
-                                        <li>
-                                        < Link  className="link__white" to='/Blog'>Blog</Link>
-                                        </li>
-                                        <li>
-                                            <Link  className="link__white" to='/ContactUS'>Contact us</Link>
-                                        </li>
+                                      
                                     </ul>
                                 </div>
                                 <p>

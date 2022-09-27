@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../assets/proj.png";
 import SearchIcon from "@mui/icons-material/Search";
-import homeimg from "../assets/home.svg";
+import homeimg from "../assets/ai.png";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import Nav from "../components/Nav";
+import Spline from '@splinetool/react-spline';
+
+
 
 const Home = () => {
   const [input, setInput] = useState("");
@@ -27,6 +30,10 @@ const Home = () => {
 
 
 
+  
+
+
+
   return (
     <div className="home">
       
@@ -35,7 +42,7 @@ const Home = () => {
           <div className="main__des">
             <div className="home__description">
               <h1>Australia's most awarded Movie platform</h1>
-              <h2>FIND YOUR DREAM Movie WITH CINEMATIC</h2>
+              <h2>FIND YOUR DREAM MOVIE HERE</h2>
 
               <div className="input__holder">
                 <input
@@ -53,6 +60,14 @@ const Home = () => {
             </div>
 
             <img className="home__img" src={homeimg} />
+            {/* <Spline scene="https://prod.spline.design/TrzeU7JTeRZjxUfk/scene.splinecode" /> */}
+
+           
+
+            {/* <Spline className="spline" scene="https://prod.spline.design/Dat6UCsw2zdbnrnZ/scene.splinecode" /> */}
+
+
+
           </div>
         </div>
       </header>

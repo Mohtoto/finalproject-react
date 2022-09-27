@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import img from "../assets/proj.png";
+import logo from '../assets/moh2.png'
 
 const Nav = () => {
   return (
     <div>
       <nav>
         <Link to="/">
-          <img src={img} />
+          <img  className="personal__logo" src={logo} />
         </Link>
 
         <ul>
